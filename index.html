@@ -127,34 +127,16 @@
     .project-card--tiktok:hover .play-icon { opacity: 1; }
 
     /* Кнопка "Смотреть больше" */
-    .portfolio-actions {
-      display: flex;
-      justify-content: center;
-      margin-top: 48px;
-    }
+    .portfolio-actions { display: flex; justify-content: center; margin-top: 48px; }
     .btn-tiktok-more {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 28px;
-      background: transparent;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      color: var(--fg);
-      font-weight: 500;
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px; background: transparent; border: 1px solid var(--line);
+      border-radius: var(--radius); color: var(--fg); font-weight: 500;
       transition: border-color .2s, background .2s;
     }
-    .btn-tiktok-more:hover {
-      border-color: var(--accent);
-      background: rgba(232, 115, 74, 0.05);
-      color: var(--fg);
-    }
-    .btn-tiktok-more svg {
-      transition: transform .2s;
-    }
-    .btn-tiktok-more:hover svg {
-      transform: scale(1.1);
-    }
+    .btn-tiktok-more:hover { border-color: var(--accent); background: rgba(232, 115, 74, 0.05); color: var(--fg); }
+    .btn-tiktok-more svg { transition: transform .2s; }
+    .btn-tiktok-more:hover svg { transform: scale(1.1); }
 
     /* Услуги / Обо мне */
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
@@ -165,7 +147,7 @@
     
     .about-text p { color: var(--fg-muted); margin-bottom: 1em; }
     .about-text strong { color: var(--fg); }
-    .about-facts { list-style: none; margin-top: 2em; border-top: 1px solid var(--line); }
+    .about-facts { list-style: none; margin-top: 2em; border-top: 1px solid var(--line); margin-bottom: 24px; }
     .about-facts li { padding: 12px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; font-size: .92rem; }
     .about-facts strong { color: var(--fg); font-weight: 500; }
     
@@ -184,6 +166,24 @@
     .site-footer { border-top: 1px solid var(--line); padding: 32px 0; }
     .footer-inner { display: flex; justify-content: space-between; align-items: center; color: var(--fg-muted); font-size: .85rem; }
 
+    /* =========================================================
+       АНИМАЦИЯ ПОЯВЛЕНИЯ (SCROLL REVEAL)
+       ========================================================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+      will-change: opacity, transform;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Задержки для сеток (чтобы появлялись по очереди) */
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
     /* Мобильное меню */
     @media (max-width: 720px) {
       .nav { position: absolute; top: 68px; left: 0; right: 0; background: var(--bg); flex-direction: column; padding: 20px; border-bottom: 1px solid var(--line); gap: 16px; display: none; }
@@ -192,7 +192,11 @@
       .hero-actions { flex-direction: column; }
       .projects-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
     }
-    @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+    
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
   </style>
 </head>
 <body>
@@ -221,7 +225,7 @@
     <div class="hero-bg">
       <video src="assets/hero.mp4" autoplay muted loop playsinline></video>
     </div>
-    <div class="container">
+    <div class="container reveal">
       <span class="eyebrow">Видеомонтажёр · Оператор</span>
       <h1>Снимаю и монтирую<br>видео для брендов<br>и артистов</h1>
       <p class="hero-sub">
@@ -231,6 +235,13 @@
       <div class="hero-actions">
         <a href="#work" class="btn btn-primary">Смотреть работы</a>
         <a href="https://t.me/spodzh" target="_blank" class="btn btn-ghost">Связаться</a>
+        <!-- КНОПКА РЕЗЮМЕ -->
+        <a href="assets/resume.pdf" download class="btn btn-ghost" style="border-color: var(--accent); color: var(--accent);">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+          </svg>
+          Скачать резюме
+        </a>
       </div>
       <dl class="hero-stats">
         <div><dt>Опыт</dt><dd>3+ года</dd></div>
@@ -244,15 +255,17 @@
   <!-- Работы -->
   <section class="section" id="work">
     <div class="container">
-      <span class="eyebrow">01 — Портфолио</span>
-      <h2>Избранные проекты</h2>
-      <p class="section-sub">Реклама, монтаж и творческие проекты. Нажмите на карточку, чтобы посмотреть видео.</p>
+      <div class="reveal">
+        <span class="eyebrow">01 — Портфолио</span>
+        <h2>Избранные проекты</h2>
+        <p class="section-sub">Реклама, монтаж и творческие проекты. Нажмите на карточку, чтобы посмотреть видео.</p>
+      </div>
 
       <div class="projects-grid" id="projectsGrid">
         <!-- Сюда рендерятся карточки из JS -->
       </div>
 
-      <div class="portfolio-actions">
+      <div class="portfolio-actions reveal">
         <a href="https://www.tiktok.com/@spodzh" target="_blank" rel="noopener noreferrer" class="btn-tiktok-more">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
             <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
@@ -260,29 +273,30 @@
           Смотреть больше в TikTok
         </a>
       </div>
-
     </div>
   </section>
 
   <!-- Услуги -->
   <section class="section section-alt" id="services">
     <div class="container">
-      <span class="eyebrow">02 — Услуги</span>
-      <h2>Чем я могу помочь</h2>
+      <div class="reveal">
+        <span class="eyebrow">02 — Услуги</span>
+        <h2>Чем я могу помочь</h2>
+      </div>
       <div class="services-grid">
-        <div class="service-card">
+        <div class="service-card reveal reveal-delay-1">
           <h3>Съёмка и операторство</h3>
           <p>Работа с камерой, светом и кадром. Съёмка рекламных роликов, клипов и влогов.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal reveal-delay-2">
           <h3>Видеомонтаж</h3>
           <p>Сборка материала в готовую историю. Ритм, цветокоррекция, звук, субтитры и эффекты (CapCut).</p>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal reveal-delay-3">
           <h3>Коллаборации с брендами</h3>
           <p>Создание рекламных интеграций и роликов под конкретную задачу бренда.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal">
           <h3>Полный цикл</h3>
           <p>Беру на себя задачу целиком: сценарий, съёмка, монтаж и финальный экспорт под нужную площадку.</p>
         </div>
@@ -293,7 +307,7 @@
   <!-- Обо мне -->
   <section class="section" id="about">
     <div class="container grid-2">
-      <div class="about-text">
+      <div class="about-text reveal">
         <span class="eyebrow">03 — Обо мне</span>
         <h2>Владислав (Spodzh)</h2>
         <p>22 года, Гомель, Беларусь. Занимаюсь видео почти <strong>3 года</strong>, монтажом — около 2 лет.</p>
@@ -305,8 +319,15 @@
           <li><span>Инструменты</span><strong>CapCut, камера, свет</strong></li>
           <li><span>Статус</span><strong>Открыт к проектам</strong></li>
         </ul>
+        <!-- ДУБЛИРУЮЩАЯ КНОПКА РЕЗЮМЕ В БЛОКЕ ОБО МНЕ -->
+        <a href="assets/resume.pdf" download class="btn btn-primary">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+          </svg>
+          Скачать резюме (PDF)
+        </a>
       </div>
-      <div class="about-photo-wrap">
+      <div class="about-photo-wrap reveal reveal-delay-1">
         <img src="assets/images/story-now-2026.png" alt="Владислав — видеомонтажёр и оператор" class="about-photo" loading="lazy">
       </div>
     </div>
@@ -315,26 +336,28 @@
   <!-- Контакты -->
   <section class="section section-alt" id="contact">
     <div class="container">
-      <span class="eyebrow">04 — Контакты</span>
-      <h2>Обсудим проект</h2>
-      <p class="section-sub">Пришлите задачу, площадку и сроки. Отвечу в течение дня.</p>
+      <div class="reveal">
+        <span class="eyebrow">04 — Контакты</span>
+        <h2>Обсудим проект</h2>
+        <p class="section-sub">Пришлите задачу, площадку и сроки. Отвечу в течение дня.</p>
+      </div>
       <div class="contact-grid">
-        <a href="https://t.me/spodzh" target="_blank" class="contact-card">
+        <a href="https://t.me/spodzh" target="_blank" class="contact-card reveal reveal-delay-1">
           <span class="net">TELEGRAM</span>
           <span class="handle">@spodzh</span>
           <span class="hint">быстрее всего →</span>
         </a>
-        <a href="https://t.me/ssspodzh" target="_blank" class="contact-card">
+        <a href="https://t.me/ssspodzh" target="_blank" class="contact-card reveal reveal-delay-2">
           <span class="net">TG-КАНАЛ</span>
           <span class="handle">@ssspodzh</span>
           <span class="hint">сподж · 319 подписчиков</span>
         </a>
-        <a href="https://tiktok.com/@spodzh" target="_blank" class="contact-card">
+        <a href="https://tiktok.com/@spodzh" target="_blank" class="contact-card reveal reveal-delay-3">
           <span class="net">TIKTOK</span>
           <span class="handle">@spodzh</span>
           <span class="hint">45K+ подписчиков</span>
         </a>
-        <a href="https://instagram.com/spodzh" target="_blank" class="contact-card">
+        <a href="https://instagram.com/spodzh" target="_blank" class="contact-card reveal">
           <span class="net">INSTAGRAM</span>
           <span class="handle">@spodzh</span>
           <span class="hint">визуал и бэкстейдж</span>
@@ -379,9 +402,14 @@
 
     // Функция рендера TikTok-видео
     function renderTikToks(videos) {
-      videos.forEach(v => {
+      videos.forEach((v, index) => {
         const card = document.createElement('div');
-        card.className = 'project-card--tiktok';
+        card.className = 'project-card--tiktok reveal';
+        // Добавляем каскадную задержку для первых 4 карточек
+        if (index % 4 === 1) card.classList.add('reveal-delay-1');
+        if (index % 4 === 2) card.classList.add('reveal-delay-2');
+        if (index % 4 === 3) card.classList.add('reveal-delay-3');
+
         card.onclick = () => window.open(v.link, '_blank');
         card.innerHTML = `
           <img src="${v.img}" alt="${v.label}" loading="lazy">
@@ -394,6 +422,9 @@
         `;
         grid.appendChild(card);
       });
+      
+      // После добавления карточек в DOM, нужно заново запустить обсервер
+      initScrollReveal();
     }
 
     // Загрузка видео с API или использование резервных данных
@@ -404,6 +435,38 @@
         console.warn('API недоступен, используем локальные данные');
         renderTikToks(FALLBACK_VIDEOS);
       });
+
+    // =========================================================
+    // ЛОГИКА АНИМАЦИИ ПРИ СКРОЛЛЕ (Intersection Observer)
+    // =========================================================
+    function initScrollReveal() {
+      const reveals = document.querySelectorAll('.reveal');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            // Отключаем наблюдение после того, как элемент появился
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1, // Срабатывает, когда видно 10% элемента
+        rootMargin: "0px 0px -50px 0px" // Немного сдвигает триггер вверх
+      });
+
+      reveals.forEach(el => {
+        // Если элемент уже на экране (например, Hero), показываем сразу без анимации
+        if (el.getBoundingClientRect().top < window.innerHeight) {
+          el.classList.add('active');
+        } else {
+          observer.observe(el);
+        }
+      });
+    }
+
+    // Инициализация при загрузке страницы
+    document.addEventListener('DOMContentLoaded', initScrollReveal);
 
     // Год в футере
     document.getElementById('year').textContent = new Date().getFullYear();
