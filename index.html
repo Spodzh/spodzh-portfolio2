@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Владислав (Spodzh) — Видеомонтажёр и оператор</title>
+  <meta name="description" content="Видеомонтажёр и оператор из Гомеля. Съёмка и монтаж рекламы, музыкальных клипов и контента для брендов. 3+ года опыта. Работы для LOOP и ANGOC." />
+  
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+  <link rel="apple-touch-icon" href="https://i.ibb.co/G46gG6hM/SPODZHLOGO.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  
+  <meta name="theme-color" content="#0e0f11" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://spodzh.github.io/spodzh-portfolio2/" />
+  <meta property="og:title" content="Владислав (Spodzh) — Видеомонтажёр и оператор" />
+  <meta property="og:description" content="Съёмка и монтаж рекламы, клипов и контента для брендов. 3+ года опыта." />
+  <meta property="og:image" content="https://i.ibb.co/G46gG6hM/SPODZHLOGO.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =========================================================
+       БАЗА И ПЕРЕМЕННЫЕ
+       ========================================================= */
+    :root {
+      --bg: #0e0f11;
+      --bg-alt: #15171a;
+      --fg: #f2f3f5;
+      --fg-muted: #9aa0a6;
+      --line: #26292e;
+      --line-hover: #3a3e45;
+      --accent: #e8734a;
+      --accent-hover: #f2885f;
+      --radius: 8px;
+      --container: 1200px;
+      --font-base: "Inter", system-ui, sans-serif;
+      --font-display: "Bebas Neue", "Inter", sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-base);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img, video { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; transition: color .2s ease; }
+    a:hover { color: var(--accent); }
+    button { font: inherit; cursor: pointer; border: 0; background: none; }
+    
+    .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; border-top: 1px solid var(--line); }
+    .section-alt { background: var(--bg-alt); }
+    
+    /* Типографика */
+    h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.1; text-transform: uppercase; }
+    h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); letter-spacing: .02em; }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1.5rem; }
+    h3 { font-family: var(--font-base); font-weight: 600; font-size: 1.15rem; text-transform: none; line-height: 1.3; }
+    
+    .eyebrow { color: var(--accent); font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 500; margin-bottom: .8em; display: block; }
+    .section-sub { color: var(--fg-muted); max-width: 60ch; margin-bottom: 2rem; }
+
+    /* Кнопки */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 14px 26px; border-radius: var(--radius);
+      font-weight: 500; font-size: .95rem;
+      transition: background .2s, color .2s, border-color .2s, transform .1s;
+      border: 1px solid transparent;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary { background: var(--accent); color: #0e0f11; }
+    .btn-primary:hover { background: var(--accent-hover); color: #0e0f11; }
+    .btn-ghost { border-color: var(--line); color: var(--fg); }
+    .btn-ghost:hover { border-color: var(--fg); color: var(--fg); }
+
+    /* Шапка */
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(14, 15, 17, .85); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo img { width: 32px; height: 32px; object-fit: contain; border-radius: 4px; }
+    .logo span { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: .14em; }
+    .nav { display: flex; gap: 32px; }
+    .nav a { color: var(--fg-muted); font-size: .92rem; }
+    .nav a:hover { color: var(--fg); }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; padding: 8px; }
+    .nav-toggle span { width: 22px; height: 2px; background: var(--fg); }
+
+    /* Hero */
+    .hero { position: relative; padding: 120px 0 100px; overflow: hidden; min-height: 85vh; display: flex; align-items: center; }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-bg video, .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: .4; }
+    .hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, var(--bg) 10%, transparent 100%); }
+    .hero .container { position: relative; z-index: 1; }
+    .hero-sub { color: var(--fg-muted); font-size: 1.1rem; max-width: 55ch; margin: 1.5em 0 2.5em; }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 64px; }
+    .hero-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 24px; border-top: 1px solid var(--line); padding-top: 32px; }
+    .hero-stats dt { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: .4em; }
+    .hero-stats dd { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: .06em; }
+
+    /* Работы */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+    
+    /* Карточки TikTok */
+    .project-card--tiktok { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 9/16; cursor: pointer; border: 1px solid var(--line); background: var(--bg-alt); }
+    .project-card--tiktok img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+    .project-card--tiktok:hover img { transform: scale(1.05); }
+    .project-card--tiktok .overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.9) 0%, transparent 50%); display: flex; flex-direction: column; justify-content: flex-end; padding: 16px; }
+    .project-card--tiktok .label { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: .08em; margin-bottom: 4px; }
+    .project-card--tiktok .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .project-card--tiktok .tag { background: rgba(255,255,255,.15); backdrop-filter: blur(4px); padding: 4px 8px; border-radius: 4px; font-size: .7rem; letter-spacing: .05em; }
+    .project-card--tiktok .badge-new { position: absolute; top: 12px; right: 12px; background: var(--accent); color: #000; font-weight: 700; font-size: .7rem; padding: 4px 8px; border-radius: 4px; }
+    .project-card--tiktok .play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 48px; height: 48px; background: rgba(0,0,0,.6); border-radius: 50%; display: grid; place-items: center; opacity: 0; transition: opacity .2s; }
+    .project-card--tiktok:hover .play-icon { opacity: 1; }
+
+    /* Кнопка "Смотреть больше" */
+    .portfolio-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 48px;
+    }
+    .btn-tiktok-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      color: var(--fg);
+      font-weight: 500;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-tiktok-more:hover {
+      border-color: var(--accent);
+      background: rgba(232, 115, 74, 0.05);
+      color: var(--fg);
+    }
+    .btn-tiktok-more svg {
+      transition: transform .2s;
+    }
+    .btn-tiktok-more:hover svg {
+      transform: scale(1.1);
+    }
+
+    /* Услуги / Обо мне */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; gap: 32px; } }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .service-card { background: var(--bg); border: 1px solid var(--line); padding: 24px; border-radius: var(--radius); }
+    .service-card p { color: var(--fg-muted); font-size: .92rem; margin-top: .5em; }
+    
+    .about-text p { color: var(--fg-muted); margin-bottom: 1em; }
+    .about-text strong { color: var(--fg); }
+    .about-facts { list-style: none; margin-top: 2em; border-top: 1px solid var(--line); }
+    .about-facts li { padding: 12px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; font-size: .92rem; }
+    .about-facts strong { color: var(--fg); font-weight: 500; }
+    
+    .about-photo-wrap { display: flex; justify-content: center; }
+    .about-photo { width: 100%; max-width: 400px; border-radius: var(--radius); object-fit: cover; border: 1px solid var(--line); }
+
+    /* Контакты */
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .contact-card { background: var(--bg); border: 1px solid var(--line); padding: 24px; border-radius: var(--radius); transition: border-color .2s; }
+    .contact-card:hover { border-color: var(--accent); }
+    .contact-card .net { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 8px; display: block; }
+    .contact-card .handle { font-family: var(--font-display); font-size: 1.8rem; letter-spacing: .06em; }
+    .contact-card .hint { font-size: .82rem; color: var(--fg-muted); margin-top: 4px; display: block; }
+
+    /* Футер */
+    .site-footer { border-top: 1px solid var(--line); padding: 32px 0; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; color: var(--fg-muted); font-size: .85rem; }
+
+    /* Мобильное меню */
+    @media (max-width: 720px) {
+      .nav { position: absolute; top: 68px; left: 0; right: 0; background: var(--bg); flex-direction: column; padding: 20px; border-bottom: 1px solid var(--line); gap: 16px; display: none; }
+      .nav.is-open { display: flex; }
+      .nav-toggle { display: flex; }
+      .hero-actions { flex-direction: column; }
+      .projects-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+    }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+  </style>
+</head>
+<body>
+
+  <!-- Шапка -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="logo">
+        <img src="assets/images/logo.png" alt="Spodzh" onerror="this.src='https://i.ibb.co/G46gG6hM/SPODZHLOGO.png'">
+        <span>SPODZH</span>
+      </a>
+      <nav class="nav" id="navMenu">
+        <a href="#work">Работы</a>
+        <a href="#services">Услуги</a>
+        <a href="#about">Обо мне</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <div class="hero-bg">
+      <video src="assets/hero.mp4" autoplay muted loop playsinline></video>
+    </div>
+    <div class="container">
+      <span class="eyebrow">Видеомонтажёр · Оператор</span>
+      <h1>Снимаю и монтирую<br>видео для брендов<br>и артистов</h1>
+      <p class="hero-sub">
+        Меня зовут Влад. Я снимаю и монтирую видео, музыкальные клипы и контент для брендов. 
+        Отвечаю за весь цикл: от идеи и съёмки до финального мастеринга.
+      </p>
+      <div class="hero-actions">
+        <a href="#work" class="btn btn-primary">Смотреть работы</a>
+        <a href="https://t.me/spodzh" target="_blank" class="btn btn-ghost">Связаться</a>
+      </div>
+      <dl class="hero-stats">
+        <div><dt>Опыт</dt><dd>3+ года</dd></div>
+        <div><dt>Бренды</dt><dd>LOOP · ANGOC</dd></div>
+        <div><dt>Монтаж</dt><dd>CapCut</dd></div>
+        <div><dt>Локация</dt><dd>Гомель, BY</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- Работы -->
+  <section class="section" id="work">
+    <div class="container">
+      <span class="eyebrow">01 — Портфолио</span>
+      <h2>Избранные проекты</h2>
+      <p class="section-sub">Реклама, монтаж и творческие проекты. Нажмите на карточку, чтобы посмотреть видео.</p>
+
+      <div class="projects-grid" id="projectsGrid">
+        <!-- Сюда рендерятся карточки из JS -->
+      </div>
+
+      <div class="portfolio-actions">
+        <a href="https://www.tiktok.com/@spodzh" target="_blank" rel="noopener noreferrer" class="btn-tiktok-more">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+          </svg>
+          Смотреть больше в TikTok
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Услуги -->
+  <section class="section section-alt" id="services">
+    <div class="container">
+      <span class="eyebrow">02 — Услуги</span>
+      <h2>Чем я могу помочь</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Съёмка и операторство</h3>
+          <p>Работа с камерой, светом и кадром. Съёмка рекламных роликов, клипов и влогов.</p>
+        </div>
+        <div class="service-card">
+          <h3>Видеомонтаж</h3>
+          <p>Сборка материала в готовую историю. Ритм, цветокоррекция, звук, субтитры и эффекты (CapCut).</p>
+        </div>
+        <div class="service-card">
+          <h3>Коллаборации с брендами</h3>
+          <p>Создание рекламных интеграций и роликов под конкретную задачу бренда.</p>
+        </div>
+        <div class="service-card">
+          <h3>Полный цикл</h3>
+          <p>Беру на себя задачу целиком: сценарий, съёмка, монтаж и финальный экспорт под нужную площадку.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Обо мне -->
+  <section class="section" id="about">
+    <div class="container grid-2">
+      <div class="about-text">
+        <span class="eyebrow">03 — Обо мне</span>
+        <h2>Владислав (Spodzh)</h2>
+        <p>22 года, Гомель, Беларусь. Занимаюсь видео почти <strong>3 года</strong>, монтажом — около 2 лет.</p>
+        <p>Работал с брендами <strong>LOOP</strong> и <strong>ANGOC</strong>. Имею аудиторию <strong>45 000+</strong> подписчиков в TikTok, что помогает мне чувствовать современные тренды и удерживать внимание зрителя.</p>
+        <p>В работе использую <strong>CapCut</strong>, а также работаю с камерой и светом на площадке.</p>
+        <ul class="about-facts">
+          <li><span>Опыт в производстве</span><strong>3+ года</strong></li>
+          <li><span>Бренды</span><strong>LOOP, ANGOC</strong></li>
+          <li><span>Инструменты</span><strong>CapCut, камера, свет</strong></li>
+          <li><span>Статус</span><strong>Открыт к проектам</strong></li>
+        </ul>
+      </div>
+      <div class="about-photo-wrap">
+        <img src="assets/images/story-now-2026.png" alt="Владислав — видеомонтажёр и оператор" class="about-photo" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- Контакты -->
+  <section class="section section-alt" id="contact">
+    <div class="container">
+      <span class="eyebrow">04 — Контакты</span>
+      <h2>Обсудим проект</h2>
+      <p class="section-sub">Пришлите задачу, площадку и сроки. Отвечу в течение дня.</p>
+      <div class="contact-grid">
+        <a href="https://t.me/spodzh" target="_blank" class="contact-card">
+          <span class="net">TELEGRAM</span>
+          <span class="handle">@spodzh</span>
+          <span class="hint">быстрее всего →</span>
+        </a>
+        <a href="https://t.me/ssspodzh" target="_blank" class="contact-card">
+          <span class="net">TG-КАНАЛ</span>
+          <span class="handle">@ssspodzh</span>
+          <span class="hint">сподж · 319 подписчиков</span>
+        </a>
+        <a href="https://tiktok.com/@spodzh" target="_blank" class="contact-card">
+          <span class="net">TIKTOK</span>
+          <span class="handle">@spodzh</span>
+          <span class="hint">45K+ подписчиков</span>
+        </a>
+        <a href="https://instagram.com/spodzh" target="_blank" class="contact-card">
+          <span class="net">INSTAGRAM</span>
+          <span class="handle">@spodzh</span>
+          <span class="hint">визуал и бэкстейдж</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Футер -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> SPODZH</span>
+      <a href="#top">Наверх ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    // Резервные данные из вашего скриншота
+    const FALLBACK_VIDEOS = [
+      {"id":13,"label":"КОЛЛАБ","duration":"00:18","img":"https://spodzh-reviews-api.ernest-chanel.workers.dev/video-image/13","link":"https://vt.tiktok.com/ZSjm3NCq/","tags":["TikTok","Монтаж","Коллаб","Музыка"],"is_new":true},
+      {"id":12,"label":"МОНТАЖ","duration":"00:10","img":"https://spodzh-reviews-api.ernest-chanel.workers.dev/video-image/12","link":"https://vt.tiktok.com/ZSge9DG8R/","tags":["TikTok","Монтаж","Моор"],"is_new":false},
+      {"id":11,"label":"МОНТАЖ","duration":"00:18","img":"https://spodzh-reviews-api.ernest-chanel.workers.dev/video-image/11","link":"https://vt.tiktok.com/ZSgH4YFz/","tags":["TikTok","Монтаж","Моор"],"is_new":false},
+      {"id":10,"label":"РЕКЛАМА","duration":"00:10","img":"https://spodzh-reviews-api.ernest-chanel.workers.dev/video-image/10","link":"https://vt.tiktok.com/ZSgehBrY6/","tags":["TikTok","Реклама"],"is_new":false},
+      {"id":9,"label":"КОЛЛАБ","duration":"00:22","img":"https://spodzh-reviews-api.ernest-chanel.workers.dev/video-image/9","link":"https://vt.tiktok.com/ZSgHt2eN/","tags":["TikTok","Монтаж","Коллаб"],"is_new":false},
+      {"id":8,"label":"МОНТАЖ","duration":"00:14","img":"https://spodzh-reviews-api.ernest-chanel.workers.dev/video-image/8","link":"https://vt.tiktok.com/ZSgHNChX/","tags":["TikTok","Монтаж","Коллаб","Спон Муун"],"is_new":false},
+      {"id":7,"label":"МОНТАЖ","duration":"00:16","img":"https://spodzh-reviews-api.ernest-chanel.workers.dev/video-image/7","link":"https://vt.tiktok.com/ZSgut9Ff/","tags":["TikTok","Монтаж","Спон Муун"],"is_new":false},
+      {"id":6,"label":"МОНТАЖ","duration":"00:21","img":"https://spodzh-reviews-api.ernest-chanel.workers.dev/video-image/6","link":"https://vt.tiktok.com/ZSgeH1Vbu/","tags":["TikTok","Монтаж"],"is_new":false},
+      {"id":5,"label":"КОЛЛАБ","duration":"00:25","img":"https://spodzh-reviews-api.ernest-chanel.workers.dev/video-image/5","link":"https://vt.tiktok.com/ZSguT50Z/","tags":["TikTok","Монтаж","Коллаб"],"is_new":false},
+      {"id":4,"label":"МОНТАЖ","duration":"00:33","img":"https://spodzh-reviews-api.ernest-chanel.workers.dev/video-image/4","link":"https://vt.tiktok.com/ZSgemMAWm/","tags":["TikTok","Монтаж"],"is_new":false},
+      {"id":3,"label":"МОНТАЖ","duration":"00:29","img":"https://spodzh-reviews-api.ernest-chanel.workers.dev/video-image/3","link":"https://vt.tiktok.com/ZSgeMSLy/","tags":["TikTok","Монтаж"],"is_new":false},
+      {"id":2,"label":"МОНТАЖ","duration":"00:16","img":"https://spodzh-reviews-api.ernest-chanel.workers.dev/video-image/2","link":"https://vt.tiktok.com/ZSgaJomr/","tags":["TikTok","Монтаж"],"is_new":false}
+    ];
+
+    // DOM элементы
+    const grid = document.getElementById('projectsGrid');
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    // Мобильное меню
+    navToggle.addEventListener('click', () => navMenu.classList.toggle('is-open'));
+    navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('is-open')));
+
+    // Функция рендера TikTok-видео
+    function renderTikToks(videos) {
+      videos.forEach(v => {
+        const card = document.createElement('div');
+        card.className = 'project-card--tiktok';
+        card.onclick = () => window.open(v.link, '_blank');
+        card.innerHTML = `
+          <img src="${v.img}" alt="${v.label}" loading="lazy">
+          ${v.is_new ? '<span class="badge-new">NEW</span>' : ''}
+          <div class="play-icon">▶</div>
+          <div class="overlay">
+            <div class="label">${v.label}</div>
+            <div class="tags">${v.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Загрузка видео с API или использование резервных данных
+    fetch('https://spodzh-reviews-api.ernest-chanel.workers.dev/videos')
+      .then(res => res.json())
+      .then(data => renderTikToks(data))
+      .catch(() => {
+        console.warn('API недоступен, используем локальные данные');
+        renderTikToks(FALLBACK_VIDEOS);
+      });
+
+    // Год в футере
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "name": "Владислав (Spodzh) — Видеомонтажёр и оператор",
+  "short_name": "SPODZH",
+  "description": "Реклама, клипы, коммерческое видео. 3+ года опыта. Работы для LOOP, ANGOC и шоу Мафани.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0e0f11",
+  "theme_color": "#0e0f11",
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "https://i.ibb.co/G46gG6hM/SPODZHLOGO.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://i.ibb.co/G46gG6hM/SPODZHLOGO.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://i.ibb.co/G46gG6hM/SPODZHLOGO.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
